@@ -26,6 +26,34 @@ BinarySearchTree.prototype.size = function(){
    if (circulador.rigth != null) return tamaño + circulador.rigth.size()
 }
 
+BinarySearchTree.prototype.insert = function(valor){
+   const nodito = new node(valor)
+   if (this.raiz) {
+      let circulator = this.raiz
+      if (valor < circulator.data) {
+         circulator.left.insert(valor)
+      }
+   }else{
+      this.raiz = nodito
+   }
+}
+
+BinarySearchTree.prototype.contains = function(valor){
+   if(this.raiz){
+      let circulator = this.raiz
+      if (valor == circulator.data) {
+         return true
+      }else{
+         if (circulator.left) {
+            return false || circulator.left.contains(valor)
+         }
+         if (circulator.rigth) {
+            return false || circulator.rigth.contains(valor) 
+         }
+      }
+   }else return false
+}
+
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
