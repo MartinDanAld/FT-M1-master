@@ -25,16 +25,6 @@ BinarySearchTree.prototype.size = function(){
    }
    return tam
  }
-BinarySearchTree.prototype.size2 = function(){
-   let tamaño = 1
-   if (this.left) {
-      tamaño =+ this.left.size2()
-   }
-   if (this.rigth) {
-      tamaño =+ this.rigth.size2()
-   }
-   return tamaño
-}
 
 BinarySearchTree.prototype.insert = function(valor){
    if (valor < this.value) {
