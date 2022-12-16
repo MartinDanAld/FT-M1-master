@@ -9,50 +9,69 @@
   - breadthFirstForEach: recorre el árbol siguiendo el orden breadth first (BFS)
   El ábrol utilizado para hacer los tests se encuentra representado en la imagen bst.png dentro del directorio homework.
 */
-function node(data) {
-   this.data = data
+function BinarySearchTree(valor) {
+   this.value = valor
    this.left = null
    this.rigth = null   
 }
-function BinarySearchTree() {
-   this.raiz = new node()
-}
 
 BinarySearchTree.prototype.size = function(){
-   let circulador = this.raiz
-   let tamaño = 0
-   if (circulador === null) return tamaño
-   if (circulador.left != null) return tamaño + circulador.left.size() 
-   if (circulador.rigth != null) return tamaño + circulador.rigth.size()
+   let tam = 1
+   if (this.left) {
+     tam += this.left.size()
+   }
+   if (this.rigth) {
+     tam += this.rigth.size()
+   }
+   return tam
+ }
+BinarySearchTree.prototype.size2 = function(){
+   let tamaño = 1
+   if (this.left) {
+      tamaño =+ this.left.size2()
+   }
+   if (this.rigth) {
+      tamaño =+ this.rigth.size2()
+   }
+   return tamaño
 }
 
 BinarySearchTree.prototype.insert = function(valor){
-   const nodito = new node(valor)
-   if (this.raiz) {
-      let circulator = this.raiz
-      if (valor < circulator.data) {
-         circulator.left.insert(valor)
-      }
+   if (valor < this.value) {
+      if (this.left) {
+         this.left.insert(valor)
+      }else{
+         this.left = new BinarySearchTree(valor)
+         return valor
+      } 
    }else{
-      this.raiz = nodito
+      if (this.rigth) {
+         this.rigth.insert(valor)
+      }else{
+         this.rigth = new BinarySearchTree(valor)
+         return valor
+      }   
    }
 }
 
 BinarySearchTree.prototype.contains = function(valor){
-   if(this.raiz){
-      let circulator = this.raiz
-      if (valor == circulator.data) {
-         return true
-      }else{
-         if (circulator.left) {
-            return false || circulator.left.contains(valor)
-         }
-         if (circulator.rigth) {
-            return false || circulator.rigth.contains(valor) 
-         }
-      }
-   }else return false
+   // if(this.raiz){
+   //    let circulator = this.raiz
+   //    if (valor == circulator.data) {
+   //       return true
+   //    }else{
+   //       if (circulator.left) {
+   //          return false || circulator.left.contains(valor)
+   //       }
+   //       if (circulator.rigth) {
+   //          return false || circulator.rigth.contains(valor) 
+   //       }
+   //    }
+   // }else return false
 }
+BinarySearchTree.prototype.depthFirstForEach = function() {}
+BinarySearchTree.prototype.breadthFirstForEach = function(){}
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
